@@ -1,0 +1,72 @@
+library(changepoint)
+
+#________________________________________________________________________________________________________________________________________________________________________
+#..........Use "changepoint" pkg to identify robin nonbreeding locations and migration distances.........................................................................
+#________________________________________________________________________________________________________________________________________________________________________
+
+#The count data was plotted as a time series, and changepoint analysis was performed by year in each population to identify a change in mean abundance over time. Variable 
+#penalties were applied to the function until two changepoints were achieved—(1) one changepoint at the start of each count peak, which marks a change in mean abundance of 
+#birds on the breeding site at the beginning of the breeding season—i.e., arrival of migrants to the breeding site—and (2) a second changepoint at the end of each count 
+#peak, which marks a change in mean abundance of birds on the breeding site at the end of the breeding season—i.e., departure of migrants from the breeding site.
+
+#_____________________________________________________________
+#read in IN population count/time series files made in "#1.Time_Series" script located in the same "Robin_2023-Anchoring-Time" GitHub repository.
+
+setwd()
+IN_19=read.csv("IN_19_wholeyr.csv")
+IN_20=read.csv("IN_20_wholeyr.csv")
+IN_21=read.csv("IN_21_wholeyr.csv")
+IN_22=read.csv("IN_22_wholeyr.csv")
+IN_23=read.csv("IN_23_wholeyr.csv")
+
+
+#_____________________________________________________________
+#read in AK population count/time series files made in "#1.Time_Series" script located in the same "Robin_2023-Anchoring-Time" GitHub repository.
+
+setwd()
+AK_19=read.csv("AK_19_wholeyr.csv")
+AK_20=read.csv("AK_20_wholeyr.csv")
+AK_21=read.csv("AK_21_wholeyr.csv")
+AK_22=read.csv("AK_22_wholeyr.csv")
+AK_23=read.csv("AK_23_wholeyr.csv")
+
+
+#_____________________________________________________________
+#IN population counts/day as.numeric()
+
+Input_IN_19 = as.numeric(IN_19$Count)
+Input_IN_20 = as.numeric(IN_20$Count)
+Input_IN_21 = as.numeric(IN_21$Count)
+Input_IN_22 = as.numeric(IN_22$Count)
+Input_IN_23 = as.numeric(IN_23$Count)
+
+#_____________________________________________________________
+#AK population counts/day as.numeric()
+
+Input_AK_19= as.numeric(AK_19$Count)
+Input_AK_20= as.numeric(AK_20$Count)
+Input_AK_21= as.numeric(AK_21$Count)
+Input_AK_22= as.numeric(AK_22$Count)
+Input_AK_23= as.numeric(AK_23$Count)
+
+
+#_____________________________________________________________
+#Create a time series object from the count/day data. 
+#Change "data" argument for each year's input
+
+TS=ts(data=Input_IN_19, start=1, end=365)
+ts.plot(TS, ylab="Count", xlab="Day of the Year" )
+
+#_____________________________________________________________
+#execute changepoint function with "cpt.meanvar()" 
+#change the penalty with "pen.value" argument until exactly two changepoints are achieved
+#plot changepoint results
+
+TS.pelt <- cpt.meanvar(TS, penalty = "Manual", pen.value = "100", method = "PELT")
+cpts(TS.pelt)
+plot(TS.pelt, type = "l", cpt.col = "blue", xlab = "Day of the Year", ylab= "Robin Abundance", 
+     cpt.width = 4)
+
+
+
+
