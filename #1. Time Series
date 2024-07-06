@@ -1,0 +1,91 @@
+library(lubridate)
+library(magrittr)
+library(dplyr)
+library(auk)
+library(data.table)
+library(sf)
+library(gridExtra)
+library(tidyverse)
+
+#________________________________________________________________________________________________________________________________________________________________________
+#..........Edit *AK Population* Time Series format of the count/day .csv file created in ArcGis Pro .....................................................................
+#________________________________________________________________________________________________________________________________________________________________________
+
+#_______________________load file made in ArcGIS___________________
+setwd()
+AK=read.csv("AK_timeseries_100km.csv")
+
+#__________________________________________________________________
+#split date and count information
+
+split=data.frame(do.call("rbind", strsplit(as.character(AK$date), "-", fixed = TRUE)))
+bind=cbind(split$X1, AK$Count)
+
+#__________________________________________________________________
+#Reformat Date by fixing slashes. 
+#Dates look like this before: 	1/4/2013
+
+fixed=as.Date(bind[,1], format = "%m/%d/%Y")
+noslash=as.data.frame(fixed)
+
+#__________________________________________________________________
+#add "days of the year" (i.e., Julian date) to the data frame
+
+days_of_yr=as.data.frame(yday(fixed))
+days=cbind(noslash,days_of_yr, AK$Count)
+colnames(days) = c("Date", "Day_of_yr", "Count")
+
+#__________________________________________________________________
+#filter to years 2019-2023
+
+days2=days %>% dplyr::filter(between(Date, as.Date('2019-01-01'), as.Date('2023-12-30')))
+
+#__________________________________________________________________
+#Export file as .csv
+
+setwd()
+write_csv(days2, "AK_TS_2019_23.csv")
+
+#read file in to test data frame format
+AK=read.csv('AK_TS_2019_23.csv')
+
+
+#________________________________________________________________________________________________________________________________________________________________________
+#..........Edit *IN Population* Time Series format of the count/day .csv file created in ArcGis Pro .....................................................................
+#________________________________________________________________________________________________________________________________________________________________________
+
+#_______________________load file made in ArcGIS___________________
+setwd()
+IN=read.csv("IN_timeseries_100km.csv")
+
+#__________________________________________________________________
+#split date and count information
+
+split=data.frame(do.call("rbind", strsplit(as.character(IN$date), "-", fixed = TRUE)))
+bind=cbind(split$X1, IN$Count)
+
+#__________________________________________________________________
+#Reformat Date by fixing slashes. 
+#Dates look like this before: 	1/4/2013
+
+fixed=as.Date(bind[,1], format = "%m/%d/%Y")
+noslash=as.data.frame(fixed)
+
+#__________________________________________________________________
+#Add "days of the year" (i.e., Julian date) to the data frame
+
+days_of_yr=as.data.frame(yday(fixed))
+days=cbind(noslash,days_of_yr, IN$Count)
+colnames(days) = c("Date", "Day_of_yr", "Count")
+
+#__________________________________________________________________
+#Filter to years 2019-2023
+
+days2=days %>% dplyr::filter(between(Date, as.Date('2019-01-01'), as.Date('2023-12-30')))
+write_csv(days2, "IN_TS_2019_23.csv")
+
+#read file in to test data frame format
+IN=read.csv('IN_TS_2019_23.csv')
+
+
+
