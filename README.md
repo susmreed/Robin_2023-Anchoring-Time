@@ -11,3 +11,5 @@ This script that uses the "changepoint" package in R Studio version 4.2.2 to anc
 <b> "Changepoint Results" </b> : A folder that includes files that show the plotted results of the changepoint analysis from R Studio--one file for Indiana and another for Alaska.
 
 <b> "GIS TS Chart Output" </b> : A folder that includes .csv files created in ArcGIS Pro that are the products of exported time series charts (pictures of these charts can also be found in this folder).
+
+Questions? Contact <b>susan22.reed@gmail.com</b> or <b>susmreed@iu.edu</b>.
