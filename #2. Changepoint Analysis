@@ -10,7 +10,7 @@ library(changepoint)
 #peak, which marks a change in mean abundance of birds on the breeding site at the end of the breeding season—i.e., departure of migrants from the breeding site.
 
 #_____________________________________________________________
-#read in IN population count/time series files made in "#1.Time_Series" script located in the same "Robin_2023-Anchoring-Time" GitHub repository.
+#read in IN population count/time series files made in "#1.Time Series" script located in the same "Robin_2023-Anchoring-Time" GitHub repository.
 
 setwd()
 IN_19=read.csv("IN_19_wholeyr.csv")
@@ -21,7 +21,7 @@ IN_23=read.csv("IN_23_wholeyr.csv")
 
 
 #_____________________________________________________________
-#read in AK population count/time series files made in "#1.Time_Series" script located in the same "Robin_2023-Anchoring-Time" GitHub repository.
+#read in AK population count/time series files made in "#1.TimeS eries" script located in the same "Robin_2023-Anchoring-Time" GitHub repository.
 
 setwd()
 AK_19=read.csv("AK_19_wholeyr.csv")
