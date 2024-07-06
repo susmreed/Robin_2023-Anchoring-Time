@@ -4,7 +4,7 @@ This script is referenced in graduate student Susan Reed's M.S. thesis in Biolog
 This script that uses the "changepoint" package in R Studio version 4.2.2 to anchor phenological time between two populations of the American robin songbird, 
 <em>Turdus migratorius</em> . One population breeds in Anchorage, AK, while the other breeds in Bloomington, IN.
 
-<b>"#1. Time Series"</b> : This script is used to edit time series format of a .csv file that was created as an exported time series chart from ArcGIS Pro (see "GIS TS Chart Output" folder).
+<b>"#1. Time Series"</b> : This script is used to edit the time format of a .csv file that was created as an exported time series chart from ArcGIS Pro (see "GIS TS Chart Output" folder).
 
 <b>"#2. Changepoint Analysis"</b> : This script identifies changes in bird abundance over time.
 
