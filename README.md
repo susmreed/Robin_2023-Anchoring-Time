@@ -1,5 +1,5 @@
 # Robin_2023-Anchoring-Time
-This script is referenced in graduate student Susan Reed's M.S. thesis in Biology at Indiana University, summer 2024: "_________"
+This script is referenced in graduate student Susan Reed's M.S. thesis in Biology at Indiana University, summer 2024: "Population-level variation in migratory distance, reproductive timing and reproductive readiness in the American Robin"
 
 This script that uses the "changepoint" package in R Studio version 4.2.2 to anchor phenological time between two populations of the American robin songbird, 
 <em>Turdus migratorius</em> . One population breeds in Anchorage, AK, while the other breeds in Bloomington, IN.
